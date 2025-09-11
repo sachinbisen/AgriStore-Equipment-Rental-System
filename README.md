@@ -121,4 +121,7 @@ This project is licensed under the **MIT License** – free to use and modify.
 ## 👨‍💻 Author
 - **Sachin Bisen**  
 - Final Year Computer Engineering Student  
-- GitHub: [sachinbisen](https://github.com/sachinbisen)  
+- GitHub: [sachinbisen](https://github.com/sachinbisen)
+- LinkedIn: [sachinbisen](www.linkedin.com/in/sachin-bisen)
+- LeetCode: [sachinbisen](https://leetcode.com/u/SACHIN_BISEN/)
+- CodeChef: [sachinbisen](https://www.codechef.com/users/sachinbisen664)
