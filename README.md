@@ -40,10 +40,67 @@ The system streamlines equipment bookings, payments, and inventory monitoring wh
 
 ## 🛠️ Salesforce Mapping (Phases)
 
-### **Phase 1: Problem Understanding & Industry Analysis**
-- Requirement Gathering: Equipment booking, rental, inventory, reporting  
-- Stakeholders: Farmers, Owners, Managers, Government Officers  
-- Industry Use Case: Agriculture Equipment Rental  
+# Phase 1: Problem Understanding & Industry Analysis  
+
+## 📌 Requirement Gathering  
+The goal of **AgriStore** is to provide a Salesforce-powered platform that digitizes agricultural equipment rentals.  
+
+**Key requirements include:**  
+- **Equipment Booking:** Farmers can browse, check availability, and book machinery.  
+- **Rental Management:** Owners can list equipment, set rates, and track income.  
+- **Inventory Management:** Managers can log maintenance and forecast demand.  
+- **Reporting & Dashboards:** Insights into demand, revenue, and usage trends.  
+- **Communication & Notifications:** SMS/Email confirmations, reminders, and feedback collection.  
+
+---
+
+## 👥 Stakeholder Analysis  
+- **Farmers (End Users):** Book equipment, make payments, and provide feedback.  
+- **Equipment Owners:** List equipment, manage availability, and track earnings.  
+- **Rental/Inventory Managers:** Monitor bookings, update maintenance logs, and resolve conflicts.  
+- **Government Officers / Higher Managers:** Analyze region-wise adoption, utilization, and support agricultural schemes.  
+
+---
+
+## 🔄 Business Process Mapping  
+1. Farmer searches for available equipment.  
+2. Booking request created → system checks availability.  
+3. Owner approves booking (if required).  
+4. System auto-updates equipment status to *Not Available*.  
+5. Farmer makes payment → booking confirmed.  
+6. Equipment is used → usage recorded.  
+7. After return, status resets to *Available*.  
+8. Maintenance logs updated if needed.  
+9. Feedback survey collected.  
+10. Reports & dashboards generated for stakeholders.  
+
+---
+
+## 🌾 Industry-Specific Use Case Analysis  
+- **Challenges:** High equipment costs, underutilization of machinery, disputes in rentals, lack of centralized data.  
+- **AgriStore Solution:**  
+  - Centralized Salesforce platform for all rentals.  
+  - Transparency in booking, pricing, and payments.  
+  - Better utilization for owners and affordable access for farmers.  
+  - Data-driven insights for managers and government policy-makers.  
+- **Benefits:**  
+  - Farmers: Cost-effective farming.  
+  - Owners: Additional income.  
+  - Managers: Efficient operations.  
+  - Government: Real-time analytics for planning.  
+
+---
+
+## 🛒 AppExchange Exploration  
+Relevant Salesforce AppExchange apps that inspire AgriStore:  
+- **Field Service Lightning** – for scheduling and dispatch management.  
+- **Conga Composer** – to generate invoices and agreements.  
+- **SMS Magic / Twilio** – for SMS/WhatsApp notifications.  
+- **Stripe/FinancialForce Integration** – for secure online payments.  
+
+These apps show how Salesforce can handle rentals, scheduling, communication, and payments — which AgriStore adapts for agriculture.  
+
+---
 
 ### **Phase 2: Org Setup & Configuration**
 - Profiles: Farmer, Equipment Owner, Rental Manager, Inventory Manager, Higher Manager  
