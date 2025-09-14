@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>Equipment_Rental_Manager_Access</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Equipment sharing rule for Rental Managers to view all equipment</description>
+        <label>Equipment - Rental Manager Access</label>
+        <sharedTo>
+            <role>AgriStore_Rental_Manager</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AgriStore_Equipment_Owner</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Equipment_Higher_Manager_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Equipment sharing rule for Higher Managers to have full access</description>
+        <label>Equipment - Higher Manager Access</label>
+        <sharedTo>
+            <role>AgriStore_Higher_Manager</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>AgriStore_Equipment_Owner</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Rental Manager for booking approval and conflict resolution</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>AgriStore Rental Manager</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>AgriStore_Higher_Manager</parentRole>
+</Role>

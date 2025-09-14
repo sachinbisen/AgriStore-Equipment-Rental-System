@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Payment</label>
+    <pluralLabel>Payments</pluralLabel>
+    <nameField>
+        <type>AutoNumber</type>
+        <label>Payment Number</label>
+        <displayFormat>PAY-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>Private</sharingModel>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <description>Payment records for AgriStore equipment rental transactions</description>
+</CustomObject>

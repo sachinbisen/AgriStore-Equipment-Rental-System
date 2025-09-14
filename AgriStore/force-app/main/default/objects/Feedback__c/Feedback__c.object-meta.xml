@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Feedback</label>
+    <pluralLabel>Feedback</pluralLabel>
+    <nameField>
+        <type>AutoNumber</type>
+        <label>Feedback Number</label>
+        <displayFormat>FB-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>Private</sharingModel>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <description>Customer feedback for AgriStore equipment rental experiences</description>
+</CustomObject>
