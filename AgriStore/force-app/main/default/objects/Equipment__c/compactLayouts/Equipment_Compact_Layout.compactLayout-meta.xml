@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Equipment_Compact_Layout</fullName>
+    <fields>Equipment_Name__c</fields>
+    <fields>Equipment_Type__c</fields>
+    <fields>Availability__c</fields>
+    <fields>Rental_Rate__c</fields>
+    <label>Equipment Compact Layout</label>
+</CompactLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Heavy_Equipment</fullName>
+    <active>true</active>
+    <description>Record type for heavy agricultural equipment like tractors and harvesters</description>
+    <label>Heavy Equipment</label>
+    <picklistValues>
+        <picklist>Equipment_Type__c</picklist>
+        <values>
+            <fullName>Tractor</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Harvester</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
