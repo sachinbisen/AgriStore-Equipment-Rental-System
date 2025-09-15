@@ -12,9 +12,4 @@
         <object>Equipment__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Equipment__c.Name</field>
-        <readable>true</readable>
-    </fieldPermissions>
 </PermissionSet>
