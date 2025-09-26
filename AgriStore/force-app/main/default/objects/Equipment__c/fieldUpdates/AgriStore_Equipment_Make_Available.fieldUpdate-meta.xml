@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldUpdate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Equipment_Make_Available</fullName>
+    <description>Sets equipment availability to true when booking is cancelled</description>
+    <field>Availability__c</field>
+    <literalValue>true</literalValue>
+    <name>AgriStore Equipment Make Available</name>
+    <notifyAssignee>false</notifyAssignee>
+    <operation>Literal</operation>
+    <protected>false</protected>
+    <reevaluateOnChange>false</reevaluateOnChange>
+</FieldUpdate>

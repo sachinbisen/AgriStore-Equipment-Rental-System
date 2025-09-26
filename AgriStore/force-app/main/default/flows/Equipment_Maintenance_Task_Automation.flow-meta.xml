@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Auto-create maintenance tasks when equipment maintenance status is Required</description>
+    <label>Equipment Maintenance Task Automation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Maintenance_Status</targetReference>
+        </connector>
+        <object>Maintenance_Log__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <decisions>
+        <description>Check if maintenance status requires action</description>
+        <name>Check_Maintenance_Status</name>
+        <label>Check Maintenance Status</label>
+        <locationX>182</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>No Action Required</defaultConnectorLabel>
+        <rules>
+            <name>Maintenance_Required</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Maintenance_Task</targetReference>
+            </connector>
+            <label>Maintenance Required</label>
+        </rules>
+    </decisions>
+    <recordCreates>
+        <description>Create maintenance task for equipment</description>
+        <name>Create_Maintenance_Task</name>
+        <label>Create Maintenance Task</label>
+        <locationX>50</locationX>
+        <locationY>278</locationY>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Equipment Maintenance Required: {!$Record.Equipment__r.Equipment_Name__c}</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <stringValue>Equipment {!$Record.Equipment__r.Equipment_Name__c} requires maintenance. Maintenance Log Details: {!$Record.Description__c}. Please schedule maintenance as soon as possible.</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Record.Maintenance_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Equipment__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Other</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowAlert xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Equipment_Unavailable_Email</fullName>
+    <description>Email notification sent to equipment owner when equipment becomes unavailable</description>
+    <protected>false</protected>
+    <recipients>
+        <field>OwnerId</field>
+        <type>owner</type>
+    </recipients>
+    <senderType>CurrentUser</senderType>
+    <template>AgriStore_Equipment_Unavailable_Template</template>
+</WorkflowAlert>

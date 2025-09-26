@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Payment_Date_Valid</fullName>
+    <active>true</active>
+    <description>Ensures payment date is not before booking start date</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(Payment_Date__c)),
+    NOT(ISBLANK(Booking__c)),
+    Payment_Date__c &lt; Booking__r.Start_Date__c
+)</errorConditionFormula>
+    <errorDisplayField>Payment_Date__c</errorDisplayField>
+    <errorMessage>Payment date cannot be before the booking start date.</errorMessage>
+</ValidationRule>

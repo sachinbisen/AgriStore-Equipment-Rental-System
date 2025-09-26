@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for equipment unavailable notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AgriStore Equipment Unavailable Template</name>
+    <style>none</style>
+    <subject>Equipment Status Update - {!Equipment__c.Equipment_Name__c}</subject>
+    <textOnly>Dear Equipment Owner,
+
+Your equipment "{!Equipment__c.Equipment_Name__c}" has been marked as unavailable in the AgriStore system.
+
+Equipment Details:
+- Equipment Name: {!Equipment__c.Equipment_Name__c}
+- Equipment Type: {!Equipment__c.Equipment_Type__c}
+- Status: Unavailable
+
+This usually happens when your equipment has been booked by a farmer or requires maintenance.
+
+If you have any questions, please contact our support team.
+
+Best regards,
+AgriStore Team</textOnly>
+    <type>text</type>
+</EmailTemplate>

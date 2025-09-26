@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomNotificationType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customNotifTypeName>Equipment Availability Alert</customNotifTypeName>
+    <description>Notification for equipment availability issues</description>
+    <desktop>true</desktop>
+    <mobile>true</mobile>
+    <recipients>
+        <recipient>AgriStore Equipment Owner</recipient>
+        <recipient>AgriStore Rental Manager</recipient>
+    </recipients>
+</CustomNotificationType>

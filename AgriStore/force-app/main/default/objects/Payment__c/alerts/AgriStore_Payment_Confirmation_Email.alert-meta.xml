@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowAlert xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Payment_Confirmation_Email</fullName>
+    <description>Email confirmation sent to farmer when payment is successful</description>
+    <protected>false</protected>
+    <recipients>
+        <field>Booking__r.Farmer__r.OwnerId</field>
+        <type>owner</type>
+    </recipients>
+    <senderType>CurrentUser</senderType>
+    <template>AgriStore_Payment_Confirmation_Template</template>
+</WorkflowAlert>

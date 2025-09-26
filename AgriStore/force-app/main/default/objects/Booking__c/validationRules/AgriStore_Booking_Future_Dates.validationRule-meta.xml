@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Booking_Future_Dates</fullName>
+    <active>true</active>
+    <description>Ensures booking start date is in the future (not in the past)</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(Start_Date__c)),
+    Start_Date__c &lt; TODAY()
+)</errorConditionFormula>
+    <errorDisplayField>Start_Date__c</errorDisplayField>
+    <errorMessage>Booking start date must be today or in the future. Cannot book equipment for past dates.</errorMessage>
+</ValidationRule>

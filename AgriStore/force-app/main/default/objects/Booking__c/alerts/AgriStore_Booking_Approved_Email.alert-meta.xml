@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowAlert xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Booking_Approved_Email</fullName>
+    <description>Email notification sent to farmer when booking is approved</description>
+    <protected>false</protected>
+    <recipients>
+        <field>Farmer__r.OwnerId</field>
+        <type>owner</type>
+    </recipients>
+    <senderType>CurrentUser</senderType>
+    <template>AgriStore_Booking_Approved_Template</template>
+</WorkflowAlert>

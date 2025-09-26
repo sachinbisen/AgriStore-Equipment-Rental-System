@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldUpdate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Booking_Status_Confirmed</fullName>
+    <description>Updates booking status to Confirmed when payment is successful</description>
+    <field>Status__c</field>
+    <literalValue>Confirmed</literalValue>
+    <name>AgriStore Booking Status Confirmed</name>
+    <notifyAssignee>false</notifyAssignee>
+    <operation>Literal</operation>
+    <protected>false</protected>
+    <reevaluateOnChange>false</reevaluateOnChange>
+</FieldUpdate>

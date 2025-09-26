@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Check if equipment is available when booking is created, block if not available</description>
+    <label>AgriStore Booking Equipment Availability Check</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <decisions>
+        <name>Check_Equipment_Availability</name>
+        <label>Check Equipment Availability</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Equipment Available</defaultConnectorLabel>
+        <rules>
+            <name>Equipment_Not_Available</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Equipment__r.Availability__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Equipment_Unavailable_Error</targetReference>
+            </connector>
+            <label>Equipment Not Available</label>
+        </rules>
+    </decisions>
+    <faultConnectors>
+        <targetReference>Equipment_Unavailable_Error</targetReference>
+    </faultConnectors>
+    <screens>
+        <name>Equipment_Unavailable_Error</name>
+        <label>Equipment Unavailable Error</label>
+        <locationX>50</locationX>
+        <locationY>635</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p style="text-align: center;"&gt;&lt;span style="color: rgb(194, 57, 52); font-size: 16px;"&gt;&lt;strong&gt;Equipment Not Available&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style="color: rgb(68, 68, 68);"&gt;The selected equipment is currently not available for booking. Please choose a different equipment or try again later.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Equipment_Availability</targetReference>
+        </connector>
+        <object>Booking__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomNotificationType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customNotifTypeName>Payment Failure Alert</customNotifTypeName>
+    <description>Notification for payment failures requiring immediate attention</description>
+    <desktop>true</desktop>
+    <mobile>true</mobile>
+    <recipients>
+        <recipient>AgriStore Higher Manager</recipient>
+        <recipient>AgriStore Rental Manager</recipient>
+    </recipients>
+</CustomNotificationType>

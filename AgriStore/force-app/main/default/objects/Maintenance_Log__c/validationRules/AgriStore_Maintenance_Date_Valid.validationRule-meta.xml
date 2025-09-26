@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgriStore_Maintenance_Date_Valid</fullName>
+    <active>true</active>
+    <description>Ensures maintenance date is not in the future</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(Maintenance_Date__c)),
+    Maintenance_Date__c &gt; TODAY()
+)</errorConditionFormula>
+    <errorDisplayField>Maintenance_Date__c</errorDisplayField>
+    <errorMessage>Maintenance date cannot be in the future. Please enter the actual maintenance date.</errorMessage>
+</ValidationRule>
