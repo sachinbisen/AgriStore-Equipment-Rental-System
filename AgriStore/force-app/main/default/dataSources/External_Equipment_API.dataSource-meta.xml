@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authProvider>External_Equipment_Auth</authProvider>
+    <certificate>External_Equipment_API_Certificate</certificate>
+    <customConfiguration>odata.version=2.0</customConfiguration>
+    <endpoint>https://api.externalequipment.com/v1/odata</endpoint>
+    <isWritable>false</isWritable>
+    <label>External Equipment API</label>
+    <principalType>NamedPrincipal</principalType>
+    <protocol>Odata</protocol>
+    <type>OData</type>
+</ExternalDataSource>

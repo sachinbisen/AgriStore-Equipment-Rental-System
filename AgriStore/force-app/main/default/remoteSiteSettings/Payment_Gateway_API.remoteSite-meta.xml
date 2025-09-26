@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Gateway_API</fullName>
+    <description>Remote site setting for Payment Gateway API integration</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://api.paymentgateway.com</url>
+</RemoteSiteSetting>

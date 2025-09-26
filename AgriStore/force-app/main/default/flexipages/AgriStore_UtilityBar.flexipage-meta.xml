@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>AgriStore Utility Bar with recent items</description>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:recentItems</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>utilityItems</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>AgriStore Utility Bar</masterLabel>
+    <template>
+        <name>flexipage:utilityBarTemplateDesktop</name>
+    </template>
+    <type>UtilityBar</type>
+</FlexiPage>

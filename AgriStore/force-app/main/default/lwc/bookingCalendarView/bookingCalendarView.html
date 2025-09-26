@@ -1,0 +1,93 @@
+<template>
+    <lightning-card title="Booking Calendar" icon-name="utility:event">
+        <div class="slds-p-around_medium">
+            <!-- Date Range Selector -->
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        type="date"
+                        name="startDate"
+                        label="Start Date"
+                        value={startDate}
+                        onchange={handleStartDateChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        type="date"
+                        name="endDate"
+                        label="End Date"
+                        value={endDate}
+                        onchange={handleEndDateChange}>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div if:true={isLoading} class="slds-p-vertical_medium">
+                <lightning-spinner alternative-text="Loading bookings..." size="medium">
+                </lightning-spinner>
+            </div>
+
+            <!-- Error Message -->
+            <div if:true={errorMessage} class="slds-p-vertical_medium">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{errorMessage}</h2>
+                </div>
+            </div>
+
+            <!-- Bookings List -->
+            <div if:true={hasBookings} class="slds-p-top_medium">
+                <h3 class="slds-text-heading_small slds-p-bottom_small">
+                    Bookings ({bookings.length})
+                </h3>
+                <div class="booking-list">
+                    <template for:each={bookings} for:item="booking">
+                        <div key={booking.Id} class="slds-box slds-p-around_small slds-m-bottom_small">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <div class="slds-text-heading_small">
+                                        <a onclick={navigateToBooking} data-booking-id={booking.Id}>
+                                            {booking.Name}
+                                        </a>
+                                    </div>
+                                    <div class="slds-text-body_small">
+                                        Equipment: {booking.Equipment__r.Equipment_Name__c}
+                                    </div>
+                                    <div class="slds-text-body_small">
+                                        Farmer: {booking.Farmer__r.Farmer_Name__c}
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <div class="slds-text-body_small">
+                                        Start: {booking.formattedStartDate}
+                                    </div>
+                                    <div class="slds-text-body_small">
+                                        End: {booking.formattedEndDate}
+                                    </div>
+                                    <div class="slds-text-body_small">
+                                        <lightning-badge 
+                                            label={booking.Status__c} 
+                                            variant={booking.statusVariant}>
+                                        </lightning-badge>
+                                    </div>
+                                    <div if:true={booking.Total_Amount__c} class="slds-text-body_small">
+                                        Amount: ${booking.Total_Amount__c}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- No Bookings Message -->
+            <div if:false={hasBookings} if:false={isLoading} class="slds-p-vertical_large">
+                <div class="slds-align_absolute-center">
+                    <p class="slds-text-body_regular">No bookings found for the selected date range.</p>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

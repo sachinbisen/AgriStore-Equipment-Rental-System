@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>AgriStore Home Page with recent items and placeholders for charts</description>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:recentItems</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>AgriStore Home</masterLabel>
+    <template>
+        <name>flexipage:defaultHomeTemplateDesktop</name>
+    </template>
+    <type>HomePage</type>
+</FlexiPage>

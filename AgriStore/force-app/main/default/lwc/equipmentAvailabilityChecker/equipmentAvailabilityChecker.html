@@ -1,0 +1,169 @@
+<template>
+    <lightning-card title="Equipment Availability Checker" icon-name="utility:search">
+        <div class="slds-p-around_medium">
+            <!-- Equipment Filter -->
+            <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning-combobox
+                        name="equipmentType"
+                        label="Equipment Type"
+                        value={selectedEquipmentType}
+                        placeholder="Select Equipment Type"
+                        options={equipmentTypeOptions}
+                        onchange={handleEquipmentTypeChange}>
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div if:true={isLoading} class="slds-p-vertical_medium">
+                <lightning-spinner alternative-text="Loading equipment..." size="medium">
+                </lightning-spinner>
+            </div>
+
+            <!-- Error Message -->
+            <div if:true={errorMessage} class="slds-p-vertical_medium">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{errorMessage}</h2>
+                </div>
+            </div>
+
+            <!-- Equipment List -->
+            <div if:true={hasEquipment} class="equipment-grid">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <template for:each={equipment} for:item="item">
+                        <div key={item.Id} class="slds-col slds-size_1-of-2 slds-large-size_1-of-3">
+                            <div class="slds-card slds-p-around_small slds-m-bottom_small">
+                                <div class="slds-card__header">
+                                    <h3 class="slds-card__header-title slds-text-heading_small">
+                                        <a onclick={navigateToEquipment} data-equipment-id={item.Id}>
+                                            {item.Equipment_Name__c}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div class="slds-card__body">
+                                    <div class="slds-text-body_small slds-m-bottom_x-small">
+                                        Type: {item.Equipment_Type__c}
+                                    </div>
+                                    <div class="slds-text-body_small slds-m-bottom_x-small">
+                                        Rate: ${item.Rental_Rate__c}/day
+                                    </div>
+                                    <div class="slds-text-body_small slds-m-bottom_small">
+                                        <lightning-badge 
+                                            label={item.availabilityLabel}
+                                            variant={item.availabilityVariant}>
+                                        </lightning-badge>
+                                    </div>
+                                    <lightning-button
+                                        variant="brand"
+                                        label="Check Availability"
+                                        title="Check detailed availability"
+                                        onclick={checkDetailedAvailability}
+                                        data-equipment-id={item.Id}
+                                        disabled={item.isUnavailable}>
+                                    </lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- No Equipment Message -->
+            <div if:false={hasEquipment} if:false={isLoading} class="slds-p-vertical_large">
+                <div class="slds-align_absolute-center">
+                    <p class="slds-text-body_regular">No equipment found. Try adjusting your filters.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Availability Check Modal -->
+        <template if:true={showAvailabilityModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                                onclick={closeModal} title="Close">
+                            <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-modal__title slds-hyphenate">Equipment Availability</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div if:true={selectedEquipmentDetails}>
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">
+                                {selectedEquipmentDetails.Equipment_Name__c}
+                            </h3>
+                            
+                            <!-- Date Selection -->
+                            <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        type="date"
+                                        name="checkStartDate"
+                                        label="Start Date"
+                                        value={checkStartDate}
+                                        onchange={handleCheckStartDateChange}>
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        type="date"
+                                        name="checkEndDate"
+                                        label="End Date"
+                                        value={checkEndDate}
+                                        onchange={handleCheckEndDateChange}>
+                                    </lightning-input>
+                                </div>
+                            </div>
+
+                            <lightning-button
+                                variant="brand"
+                                label="Check Availability"
+                                onclick={performAvailabilityCheck}
+                                disabled={checkingAvailability}>
+                            </lightning-button>
+
+                            <!-- Availability Results -->
+                            <div if:true={availabilityResult} class="slds-p-top_medium">
+                                <div if:false={availabilityResult.hasConflicts} 
+                                     class="slds-box slds-theme_success slds-m-bottom_small">
+                                    <h4 class="slds-text-heading_small">✓ Available</h4>
+                                    <div if:true={availabilityResult.totalCost}>
+                                        <p>Duration: {availabilityResult.days} days</p>
+                                        <p>Total Cost: ${availabilityResult.totalCost}</p>
+                                    </div>
+                                </div>
+
+                                <div if:true={availabilityResult.hasConflicts} 
+                                     class="slds-box slds-theme_error slds-m-bottom_small">
+                                    <h4 class="slds-text-heading_small">✗ Not Available</h4>
+                                    <p>Equipment is already booked during this period.</p>
+                                </div>
+
+                                <div if:true={availabilityResult.conflicts} class="slds-m-top_medium">
+                                    <h5 class="slds-text-heading_x-small slds-m-bottom_small">Existing Bookings:</h5>
+                                    <template for:each={availabilityResult.conflicts} for:item="conflict">
+                                        <div key={conflict.Id} class="slds-box slds-p-around_small slds-m-bottom_x-small">
+                                            <div class="slds-text-body_small">
+                                                {conflict.Name} - {conflict.Status__c}
+                                            </div>
+                                            <div class="slds-text-body_small">
+                                                {conflict.formattedStartDate} to {conflict.formattedEndDate}
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>

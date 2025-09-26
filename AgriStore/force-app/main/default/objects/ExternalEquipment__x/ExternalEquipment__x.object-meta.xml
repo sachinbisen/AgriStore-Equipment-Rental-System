@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <externalDataSource>External_Equipment_API</externalDataSource>
+    <externalName>Equipment</externalName>
+    <externalRepository>External_Equipment_API</externalRepository>
+    <label>External Equipment</label>
+    <pluralLabel>External Equipment</pluralLabel>
+    <searchLayouts/>
+    <fields>
+        <fullName>ExternalId</fullName>
+        <externalId>true</externalId>
+        <isIdLookup>true</isIdLookup>
+        <isNameField>false</isNameField>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name__c</fullName>
+        <externalName>Name</externalName>
+        <isNameField>true</isNameField>
+        <label>Equipment Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalName>Category</externalName>
+        <label>Category</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RentalRate__c</fullName>
+        <externalName>RentalRate</externalName>
+        <label>Rental Rate</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>IsAvailable__c</fullName>
+        <externalName>IsAvailable</externalName>
+        <label>Is Available</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+</CustomObject>
